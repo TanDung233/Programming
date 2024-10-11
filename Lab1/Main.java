@@ -47,7 +47,7 @@ public class Main {
     public static float[] makeX(float []x, float maxArrayx, float minArrayx){
         Random random = new Random();
         for(int i=0; i<18; i++){
-            x[i]=minArrayx+random.nextFloat()*(maxArrayx-minArrayx);
+            x[i]=minArrayx+random.nextFloat()*(maxArrayx-minArrayx); //.nextFloat: Returns a random number from 0.0 to 1.0
         }
         return x;
     }
