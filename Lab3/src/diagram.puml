@@ -1,275 +1,295 @@
 @startuml
+
+' Lớp core.Item
 class core.Item {
-# String name
-# ItemType itemType
-# Person owner
-# float mass
-# ItemStatus status
-# String color
-+ String getName()
-+ void setName(String)
-+ ItemType getItemType()
-+ void setItemTyoe(ItemType)
-+ Person getOwner()
-+ void setOwner(Person)
-+ float getMass()
-+ void setMass(float)
-+ ItemStatus getStatus()
-+ void setStatus(ItemStatus)
-+ String getColor()
-+ void setColor(String)
-+ void use()
-+ boolean equals(Object)
-+ int hashCode()
-+ String toString()
+  # String name
+  # ItemType itemType
+  # Person owner
+  # float mass
+  # ItemStatus status
+  # String color
+  + String getName()
+  + void setName(String)
+  + ItemType getItemType()
+  + void setItemType(ItemType)
+  + Person getOwner()
+  + void setOwner(Person)
+  + float getMass()
+  + void setMass(float)
+  + ItemStatus getStatus()
+  + void setStatus(ItemStatus)
+  + String getColor()
+  + void setColor(String)
+  + void use()
+  + boolean equals(Object)
+  + int hashCode()
+  + String toString()
 }
 
-
+' Enum utility.ItemType
 enum utility.ItemType {
-+  PERSONAL
-+  TOOL
-+  CLOTHING
+  + PERSONAL
+  + TOOL
+  + CLOTHING
 }
 
+' Interface utility.EmotionalActions
 interface utility.EmotionalActions {
-+ void smile()
-+ void thankTo(Person)
+  + void smile()
+  + void thankTo(Person)
 }
 
-class Story {
-- {static} Logger logger
-+ {static} void main(String[])
-}
-
-
+' Lớp core.Guest kế thừa core.Person và implement utility.GuestActions
 class core.Guest {
-- {static} Logger logger
-- PersonType personType
-+ void putSoap()
-+ void useSoap(Item)
-+ void saveMoney()
-+ boolean equals(Object)
-+ int hashCode()
-+ String toString()
+  - {static} Logger logger
+  - PersonType personType
+  + void putSoap()
+  + void useSoap(Item)
+  + void saveMoney()
+  + boolean equals(Object)
+  + int hashCode()
+  + String toString()
 }
 
-
-class core.CommonSpace {
-- SpaceObjectType objectType
-- LightingTypeStatus lightingTypeStatus
-# LightingStatus lightingStatus
-- String airQuality
-+ String getAirQuality()
-+ void setAirQuality(String)
-+ boolean equals(Object)
-+ int hashCode()
-+ String toString()
-}
-
-
-abstract class utility.StorageSpace {
-# List<Item> storageItems
-+ boolean equals(Object)
-+ int hashCode()
-+ String toString()
-}
-
-
-enum utility.SpaceObjectType {
-+  COMMONSPACE
-+  WORKSPACE
-+  RESTINGSPACE
-+  SANITARYSPACE
-- String description
-+ String getDescription()
-}
-
-
-interface utility.ViewActions {
-+ void lookAround()
-+ void lookAt(Person)
-+ void lookAtItem(Item)
-}
-
-class core.SanitarySpace {
-- {static} Logger logger
-- SpaceObjectType objectType
-- LightingTypeStatus lightingTypeStatus
-# LightingStatus lightingStatus
-- String colorTheme
-+ String getName()
-+ void setName(String)
-+ double getArea()
-+ void setArea(int)
-+ double getTemperature()
-+ void setTemperature(double)
-+ int getFloor()
-+ void setFloor(int)
-+ LightingStatus getLightingStatus()
-+ void setLightingStatus(LightingStatus)
-+ String getColorTheme()
-+ void setColorTheme(String)
-+ void status()
-+ boolean equals(Object)
-+ int hashCode()
-+ String toString()
-}
-
-
-class core.HouseSpace {
-# String name
-# SpaceObjectType objectType
-# double area
-# double temperature
-# int floor
-# LightingTypeStatus lightingType
-# LightingStatus lightingStatus
-+ String getName()
-+ void setName(String)
-+ double getArea()
-+ void setArea(int)
-+ double getTemperature()
-+ void setTemperature(double)
-+ int getFloor()
-+ void setFloor(int)
-+ LightingStatus getLightingStatus()
-+ void setLightingStatus(LightingStatus)
-+ boolean equals(Object)
-+ int hashCode()
-+ String toString()
-}
-
-
-enum utility.PersonType {
-+  GUEST
-+  HOST
-- String description
-+ String getDescription()
-}
-
-
-class core.Hat {
-- String name
-- Person owner
-- int capacity
-+ String getName()
-+ void setName(String)
-+ int getCapacity()
-+ void setCapacity(int)
-+ List<Item> getHatItems()
-+ void setHatItems(List<Item>)
-+ boolean equals(Object)
-+ int hashCode()
-+ String toString()
-}
-
-
-class core.Person {
-- {static} Logger logger
-# String name
-# int age
-# String gender
-# HouseSpace location
-# double height
-# double weight
-# String language
-+ String getName()
-+ void setName(String)
-+ int getAge()
-+ void setAge(int)
-+ String getGender()
-+ void setGender(String)
-+ HouseSpace getLocation()
-+ void setLocation(HouseSpace)
-+ double getHeight()
-+ void setHeight(double)
-+ double getWeight()
-+ void setWeight(double)
-+ String getLanguage()
-+ void setLanguage(String)
-+ void lookAround()
-+ void lookAt(Person)
-+ void smile()
-+ void thankTo(Person)
-+ void moveTo(HouseSpace)
-+ void turnOffLight()
-+ void turnOnLight()
-+ void addItems(List<Item>,Hat)
-+ void pullHat(Hat)
-+ void takeItems(List<Item>,Hat)
-+ void hideItem(List<Item>)
-+ void lookAtItem(Item)
-+ void compareItem(Item,Item)
-+ boolean equals(Object)
-+ int hashCode()
-+ String toString()
-}
-
-
-interface utility.LightActions {
-+ void turnOffLight()
-+ void turnOnLight()
-}
-
-enum utility.LightingStatus {
-+  ON
-+  OFF
-- String description
-+ String getDescription()
-}
-
-
-enum utility.LightingTypeStatus {
-+  LED
-+  BRIGHT
-+  SOFT
-+  FLUORESCENT
-}
-
-interface utility.ItemActions {
-+ void hideItem(List<Item>)
-+ void compareItem(Item,Item)
-+ void addItems(List<Item>,Hat)
-+ void takeItems(List<Item>,Hat)
-}
-
-enum utility.ItemStatus {
-+  NEW
-+  OLD
-+  USED
-+  BROKEN
-}
-
-interface utility.GuestActions {
-+ void putSoap()
-+ void useSoap(Item)
-+ void saveMoney()
-}
-
-interface utility.PhysicalActions {
-+ void moveTo(HouseSpace)
-+ void pullHat(Hat)
-}
-
-class core.Host {
-- PersonType personType
-+ boolean equals(Object)
-+ int hashCode()
-+ String toString()
-}
-
-
-
-
-utility.GuestActions <|.. core.Guest
 core.Person <|-- core.Guest
+utility.GuestActions <|.. core.Guest
+
+' Lớp core.CommonSpace kế thừa core.HouseSpace
+class core.CommonSpace {
+  - SpaceObjectType objectType
+  - LightingTypeStatus lightingTypeStatus
+  # LightingStatus lightingStatus
+  - String airQuality
+  + String getAirQuality()
+  + void setAirQuality(String)
+  + boolean equals(Object)
+  + int hashCode()
+  + String toString()
+}
+
 core.HouseSpace <|-- core.CommonSpace
+
+' Abstract class utility.StorageSpace
+abstract class utility.StorageSpace {
+  # List<Item> storageItems
+  + boolean equals(Object)
+  + int hashCode()
+  + String toString()
+}
+
+' Enum utility.SpaceObjectType
+enum utility.SpaceObjectType {
+  + COMMONSPACE
+  + WORKSPACE
+  + RESTINGSPACE
+  + SANITARYSPACE
+  - String description
+  + String getDescription()
+}
+
+' Interface utility.ViewActions
+interface utility.ViewActions {
+  + void lookAround()
+  + void lookAt(Person)
+  + void lookAtItem(Item)
+}
+
+' Lớp core.SanitarySpace kế thừa core.HouseSpace
+class core.SanitarySpace {
+  - {static} Logger logger
+  - SpaceObjectType objectType
+  - LightingTypeStatus lightingTypeStatus
+  # LightingStatus lightingStatus
+  - String colorTheme
+  + String getName()
+  + void setName(String)
+  + double getArea()
+  + void setArea(int)
+  + double getTemperature()
+  + void setTemperature(double)
+  + int getFloor()
+  + void setFloor(int)
+  + LightingStatus getLightingStatus()
+  + void setLightingStatus(LightingStatus)
+  + String getColorTheme()
+  + void setColorTheme(String)
+  + void status()
+  + boolean equals(Object)
+  + int hashCode()
+  + String toString()
+}
+
 core.HouseSpace <|-- core.SanitarySpace
-utility.StorageSpace <|-- core.Hat
-core.EmotionalActions <|.. core.Person
-core.ItemActions <|.. core.Person
-core.PhysicalActions <|.. core.Person
-core.ViewActions <|.. core.Person
-core.LightActions <|.. core.Person
+
+' Lớp core.HouseSpace
+class core.HouseSpace {
+  # String name
+  # SpaceObjectType objectType
+  # double area
+  # double temperature
+  # int floor
+  # LightingTypeStatus lightingType
+  # LightingStatus lightingStatus
+  + String getName()
+  + void setName(String)
+  + double getArea()
+  + void setArea(int)
+  + double getTemperature()
+  + void setTemperature(double)
+  + int getFloor()
+  + void setFloor(int)
+  + LightingStatus getLightingStatus()
+  + void setLightingStatus(LightingStatus)
+  + boolean equals(Object)
+  + int hashCode()
+  + String toString()
+}
+
+' Enum utility.LightingStatus
+enum utility.LightingStatus {
+  + ON
+  + OFF
+  - String description
+  + String getDescription()
+}
+
+' Enum utility.LightingTypeStatus
+enum utility.LightingTypeStatus {
+  + LED
+  + BRIGHT
+  + SOFT
+  + FLUORESCENT
+}
+
+' Lớp core.Hat
+class core.Hat {
+  - String name
+  - Person owner
+  - int capacity
+  + String getName()
+  + void setName(String)
+  + int getCapacity()
+  + void setCapacity(int)
+  + List<Item> getHatItems()
+  + void setHatItems(List<Item>)
+  + boolean equals(Object)
+  + int hashCode()
+  + String toString()
+}
+
+' Lớp core.Person
+class core.Person {
+  - {static} Logger logger
+  # String name
+  # int age
+  # String gender
+  # HouseSpace location
+  # double height
+  # double weight
+  # String language
+  # PersonType personType
+  + String getName()
+  + void setName(String)
+  + int getAge()
+  + void setAge(int)
+  + String getGender()
+  + void setGender(String)
+  + HouseSpace getLocation()
+  + void setLocation(HouseSpace)
+  + double getHeight()
+  + void setHeight(double)
+  + double getWeight()
+  + void setWeight(double)
+  + String getLanguage()
+  + void setLanguage(String)
+  + PersonType getPersonType()
+  + void setPersonType(PersonType)
+  + void lookAround()
+  + void lookAt(Person)
+  + void smile()
+  + void thankTo(Person)
+  + void moveTo(HouseSpace)
+  + void turnOffLight()
+  + void turnOnLight()
+  + void addItems(List<Item>,Hat)
+  + void pullHat(Hat)
+  + void takeItems(List<Item>,Hat)
+  + void hideItem(List<Item>)
+  + void lookAtItem(Item)
+  + void compareItem(Item,Item)
+  + boolean equals(Object)
+  + int hashCode()
+  + String toString()
+}
+
+' Interface utility.LightActions
+interface utility.LightActions {
+  + void turnOffLight()
+  + void turnOnLight()
+}
+
+' Interface utility.ItemActions
+interface utility.ItemActions {
+  + void hideItem(List<Item>)
+  + void compareItem(Item,Item)
+  + void addItems(List<Item>,Hat)
+  + void takeItems(List<Item>,Hat)
+}
+
+' Enum utility.ItemStatus
+enum utility.ItemStatus {
+  + NEW
+  + OLD
+  + USED
+  + BROKEN
+}
+
+' Interface utility.GuestActions
+interface utility.GuestActions {
+  + void putSoap()
+  + void useSoap(Item)
+  + void saveMoney()
+}
+
+' Interface utility.PhysicalActions
+interface utility.PhysicalActions {
+  + void moveTo(HouseSpace)
+  + void pullHat(Hat)
+}
+
+' Lớp core.Host
+class core.Host {
+  - PersonType personType
+  + boolean equals(Object)
+  + int hashCode()
+  + String toString()
+}
+
 core.Person <|-- core.Host
+
+' Các liên kết
+utility.GuestActions <|.. core.Guest
+utility.LightActions <|.. core.Person
+utility.ItemActions <|.. core.Person
+utility.PhysicalActions <|.. core.Person
+utility.ViewActions <|.. core.Person
+utility.EmotionalActions <|.. core.Person
+
+' Các liên kết enum
+utility.ItemType --> core.Item
+utility.ItemStatus --> core.Item
+utility.LightingStatus --> core.HouseSpace
+utility.LightingTypeStatus --> core.HouseSpace
+utility.SpaceObjectType --> core.HouseSpace
+utility.PersonType --> core.Person
+utility.StorageSpace <|.. core.Hat
+
+' Enum PersonType với mô tả và phương thức
+enum utility.PersonType {
+  + GUEST : "Guest"
+  + HOST : "Host"
+  - String description
+  + String getDescription()
+}
+
 @enduml
